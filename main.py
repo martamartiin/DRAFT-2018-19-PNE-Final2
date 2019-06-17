@@ -67,9 +67,9 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 <html lang="en">
                 <head>
                     <meta charset="UTF-8">
-                    <title>LIST OF SPECIES IN THE BROWSER</title>
+                    <title>LIST OF SPECIES</title>
                 </head>
-                <body style="background-color: lightblue;">
+                <body style="background-color: lightpink;">
                 <body>
                    The total number of species in the ensembl is : {} <br>
                    The limit you have selected is : {} <br>
@@ -106,8 +106,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
             server = "http://rest.ensembl.org"
             ext = "/info/assembly/"
-            try:  # with this try, as well as with the one in the Chromosome length option, we can solve the problem
-                # user of not entering the compulsory parameters for these options
+            try: 
                 species_selected = list_options[0][7:]
                 species_selected = species_selected.replace("+", "_").lower()
                 r = requests.get(server + ext + species_selected + "?", headers={"Content-Type": "application/json"})
@@ -124,9 +123,9 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                                     <meta charset="UTF-8">
                                     <title>KARYOTYPE OF A SPECIFIC SPECIES</title>
                                 </head>
-                                <body style="background-color: lightblue;">
+                                <body style="background-color: lightpink;">
                                 <body>
-                                   The names of the chromosomes are : {}
+                                   The chromosome´s names are : {}
                                     <a href="http://localhost:8080/">A link to the index page</a>
                                 </body>
                                 </html>'''.format(karyotype))
@@ -236,11 +235,12 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                                                                 <html lang="en">
                                                                 <head>
                                                                     <meta charset="UTF-8">
-                                                                    <title>SEQUENCE OF THE SELECTED GENE</title>
+                                                                    <title>GENE`S SEQUENCE</title>
                                                                 </head>
-                                                                <body style="background-color: lightblue;">
+                                                                <body style="background-color: lightpink;">
                                                                 <body>
                                                                    The sequence of the selected gene is :  {}
+                                                                   <a href="http://localhost:8080/">A link to the index page</a>
                                                                 </body>
                                                                 </html>'''.format(decoded["seq"]))
                     f = open("gene.html", 'r')
@@ -294,13 +294,14 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                                                                     <meta charset="UTF-8">
                                                                     <title>INFORMATION ABOUT THE SELECTED GENE</title>
                                                                 </head>
-                                                                <body style="background-color: lightblue;">
+                                                                <body style="background-color: lightpink;">
                                                                 <body>
-                                                                   The start of the selected gene is :  {} <br>
-                                                                   The end of the selected gene is : {} <br>
-                                                                   The id of the selected gene is : {} <br>
-                                                                   The length of the selected gene is : {} <br>
+                                                                   The start of the gene is :  {} <br>
+                                                                   The end of the gene is : {} <br>
+                                                                   The id of the gene is : {} <br>
+                                                                   The length of the gene is : {} <br>
                                                                    The chromosome where the gene is located is: {}
+                                                                   <a href="http://localhost:8080/">A link to the index page</a>
 
                                                                 </body>
                                                                 </html>'''.format(start, end, id, length, chromo))
@@ -351,9 +352,9 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                                                                         <html lang="en">
                                                                         <head>
                                                                             <meta charset="UTF-8">
-                                                                            <title>CALCULATIONS OF THE SELECTED GENE</title>
+                                                                            <title>CALCULATIONS OF THE GENE</title>
                                                                         </head>
-                                                                        <body style="background-color: lightblue;">
+                                                                        <body style="background-color: lightpink;">
                                                                         <body>
                                                                            The total length is  :  {} <br>
                                                                            The percentage of each base is : <br>
@@ -361,6 +362,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                                                                                 * C : {}  <br>
                                                                                 * T : {}  <br>
                                                                                 * G : {}  <br>
+                                                                                <a href="http://localhost:8080/">A link to the index page</a>
                                                                         </body>
                                                                         </html>'''.format(seq.len(), seq.perc("A"),
                                                                                           seq.perc("C"),
@@ -421,12 +423,13 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                                                                         <html lang="en">
                                                                         <head>
                                                                             <meta charset="UTF-8">
-                                                                            <title>GENES IN THE SELECTED REGION OF THE CHROMOSOME</title>
+                                                                            <title>GENES PRESENT IN THE SELECTED REGION OF THE CHROMOSOME</title>
                                                                         </head>
-                                                                        <body style="background-color: lightblue;">
+                                                                        <body style="background-color: lightpink;">
                                                                         <body>
-                                                                           The genes found in the selected region are : <br>
+                                                                           The genes present in the selected region are : <br>
                                                                            {}
+                                                                           <a href="http://localhost:8080/">A link to the index page</a>
                                                                         </body>
                                                                         </html>'''.format(genes_sequence))
                     f = open("gene_list.html", 'r')
